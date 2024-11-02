@@ -1,13 +1,8 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class ThemeStyle {
-  static Color darkColor = const Color.fromARGB(255, 34, 32, 32);
-  static Color secondDarkColor = const Color.fromARGB(255, 66, 66, 66);
-  static Color hoverColor = const Color.fromARGB(255, 94, 203, 236);
-
+class AppStyles {
+  ///Color style
   static Color mainColor = const Color(0xFF3FEA9C);
   static Color littleBlackColor = const Color(0xff181818);
 

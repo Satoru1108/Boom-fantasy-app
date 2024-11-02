@@ -1,5 +1,11 @@
 import 'dart:io';
+import 'package:first_app/utils/app_routes.dart';
 import 'package:first_app/views/screens/authontication_screens/signin.dart';
+import 'package:first_app/views/screens/nav_screens/entries_screen.dart';
+import 'package:first_app/views/screens/nav_screens/more_games_screen.dart';
+import 'package:first_app/views/screens/nav_screens/more_screen.dart';
+import 'package:first_app/views/screens/nav_screens/pick_em_screen.dart';
+import 'package:first_app/views/screens/nav_screens/recentwin_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
@@ -51,6 +57,13 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
+      routes: {
+        AppRoutes.pickem : (context) => const PickEmScreen(),
+        AppRoutes.moreGame : (context) => const MoreGamesScreen(),
+        AppRoutes.entries : (context) => EntriesScreen(),
+        AppRoutes.recentWins : (context) => RecentwinScreen(),
+        AppRoutes.more  : (context) => const MoreScreen()
+      }, 
       home: LoginScreen(),
     );
   }

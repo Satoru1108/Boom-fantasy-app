@@ -11,7 +11,12 @@ class _PickEmScreenState extends State<PickEmScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      
+      child: Text(
+        "Pick Em screen.",
+        style: TextStyle(
+          color: Colors.white
+        ),
+      ),
     );
   }
 }

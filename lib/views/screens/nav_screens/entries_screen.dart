@@ -4,8 +4,8 @@ import 'package:first_app/views/screens/nav_screens/widget/header_widget.dart';
 import 'package:first_app/views/screens/nav_screens/widget/player_stats_card_widget.dart';
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatelessWidget {
-  HomeScreen({super.key});
+class EntriesScreen extends StatelessWidget {
+  EntriesScreen({super.key});
 
   final List<StatItem> stats = [
     StatItem("Points", "24.5", "1.82x", "1.73x"),

@@ -1,9 +1,10 @@
 import 'package:first_app/provider/squadPlayer_provider.dart';
 import 'package:first_app/style/style.dart';
 import 'package:first_app/views/screens/nav_screens/more_games_screen.dart';
+import 'package:first_app/views/screens/squadride_screen/review_entry_screen.dart';
 import 'package:first_app/views/screens/squadride_screen/widget/playerCard.dart';
-import 'package:first_app/views/widget/filter_button.dart';
-import 'package:first_app/views/widget/sports_sort_widget.dart';
+import 'package:first_app/views/widgets/filter_button.dart';
+import 'package:first_app/views/widgets/sports_sort_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -256,7 +257,8 @@ class _SquadrideScreenState extends ConsumerState<SquadrideScreen> {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.horizontal(
                       left: Radius.circular(10), right: Radius.circular(10)),
-                  color: const Color.fromARGB(255, 73, 71, 71)),
+                  color: ThemeStyle.secondDarkColor
+                ),
               child: Column(
                 children: [
                   Padding(
@@ -285,7 +287,8 @@ class _SquadrideScreenState extends ConsumerState<SquadrideScreen> {
                                 color: Colors.grey.shade100,
                                 fontWeight: FontWeight.bold,
                                 decoration: TextDecoration.underline,
-                                decorationThickness: 2,
+                                decorationColor: Colors.white,
+                                decorationThickness: 3,
                                 decorationStyle: TextDecorationStyle.solid),
                           ),
                         )
@@ -363,7 +366,9 @@ class _SquadrideScreenState extends ConsumerState<SquadrideScreen> {
                     padding: const EdgeInsets.only(bottom: 10.0),
                     child: ElevatedButton(
                       onPressed: () {
-                        // Your action here
+                        Navigator.push(context, MaterialPageRoute(builder: (context) {
+                          return ReviewEntryScreen(); 
+                        }));
                       },
                       style: ElevatedButton.styleFrom(
                         minimumSize: Size(300, 30),
