@@ -6,6 +6,8 @@ import 'package:first_app/views/screens/nav_screens/more_games_screen.dart';
 import 'package:first_app/views/screens/nav_screens/more_screen.dart';
 import 'package:first_app/views/screens/nav_screens/pick_em_screen.dart';
 import 'package:first_app/views/screens/nav_screens/recentwin_screen.dart';
+import 'package:first_app/views/screens/squadride_screen/review_entry_screen.dart';
+import 'package:first_app/views/screens/squadride_screen/squadride_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
@@ -62,7 +64,9 @@ class MyApp extends StatelessWidget {
         AppRoutes.moreGame : (context) => const MoreGamesScreen(),
         AppRoutes.entries : (context) => EntriesScreen(),
         AppRoutes.recentWins : (context) => RecentwinScreen(),
-        AppRoutes.more  : (context) => const MoreScreen()
+        AppRoutes.more  : (context) => const MoreScreen(),
+        AppRoutes.reviewEntry  : (context) => const ReviewEntryScreen(),
+        AppRoutes.squadride  : (context) => const SquadrideScreen()
       }, 
       home: LoginScreen(),
     );

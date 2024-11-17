@@ -1,7 +1,6 @@
-
-import 'package:first_app/style/style.dart';
 import 'package:first_app/utils/app_routes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({super.key, required this.currentIndex});
@@ -45,158 +44,55 @@ class _BottomNavBarState extends State<BottomNavBar> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Container(
-          height: 2,
-          color: Colors.black,
-        ),
-        BottomNavigationBar(
-          backgroundColor: Colors.white,
-          type: BottomNavigationBarType.fixed,
-          items: <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Container(
-                width: 59,
-                height: 59,
-                decoration: BoxDecoration(
-                  color: _selectedIndex == 0
-                      ? ThemeStyle.littleBlackColor
-                      : Colors.white, // Background color for the container
-                  borderRadius: BorderRadius.circular(30),
-                  border:
-                      Border.all(width: 2, color: ThemeStyle.littleBlackColor),
-                  boxShadow: [
-                    BoxShadow(
-                      color: ThemeStyle
-                          .littleBlackColor, // Adjust opacity if needed
-                      offset: const Offset(2, 2),
-                      // blurRadius: 4, // Add blur radius for a smoother shadow
-                    ),
-                  ], // Rounded corners
-                ),
-
-                child: _selectedIndex == 0
-                    ? Image.asset('assets/icons/home.svg')
-                    : Image.asset(
-                        'assets/icons/home.svg'), // Icon inside the container
-              ),
-              label: 'Pick`Em',
-            ),
-            BottomNavigationBarItem(
-              icon: Container(
-                width: 59,
-                height: 59,
-                decoration: BoxDecoration(
-                  color: _selectedIndex == 1
-                      ? ThemeStyle.littleBlackColor
-                      : Colors.white, // Background color for the container
-                  borderRadius: BorderRadius.circular(30),
-                  border:
-                      Border.all(width: 2, color: ThemeStyle.littleBlackColor),
-                  boxShadow: [
-                    BoxShadow(
-                      color: ThemeStyle
-                          .littleBlackColor, // Adjust opacity if needed
-                      offset: const Offset(2, 2),
-                      // blurRadius: 4, // Add blur radius for a smoother shadow
-                    ),
-                  ], // Rounded corners
-                ),
-
-                child: _selectedIndex == 1
-                    ? Image.asset('assets/icons/stadia_controller.svg')
-                    : Image.asset(
-                        'assets/icons/stadia_controller.svg'), // Icon inside the container
-              ),
-              label: 'More Games',
-            ),
-            BottomNavigationBarItem(
-              icon: Container(
-                width: 59,
-                height: 59,
-                decoration: BoxDecoration(
-                  color:
-                      ThemeStyle.mainColor, // Background color for the container
-                  borderRadius: BorderRadius.circular(30),
-                  border:
-                      Border.all(width: 2, color: ThemeStyle.littleBlackColor),
-                  boxShadow: [
-                    BoxShadow(
-                      color: ThemeStyle
-                          .littleBlackColor, // Adjust opacity if needed
-                      offset: const Offset(2, 2),
-                      // blurRadius: 4, // Add blur radius for a smoother shadow
-                    ),
-                  ], // Rounded corners
-                ),
-
-                child: Image.asset(
-                    'assets/icons/military.svg'), // Icon inside the container
-              ),
-              label: 'Entries',
-            ),
-            BottomNavigationBarItem(
-              icon: Container(
-                width: 59,
-                height: 59,
-                decoration: BoxDecoration(
-                  color: _selectedIndex == 3
-                      ? ThemeStyle.littleBlackColor
-                      : Colors.white, // Background color for the container
-                  borderRadius: BorderRadius.circular(30),
-                  border:
-                      Border.all(width: 2, color: ThemeStyle.littleBlackColor),
-                  boxShadow: [
-                    BoxShadow(
-                      color: ThemeStyle
-                          .littleBlackColor, // Adjust opacity if needed
-                      offset: const Offset(2, 2),
-                      // blurRadius: 4, // Add blur radius for a smoother shadow
-                    ),
-                  ], // Rounded corners
-                ),
-
-                child: _selectedIndex == 3
-                    ? Image.asset('assets/icons/win.svg')
-                    : Image.asset(
-                        'assets/icons/win.svg'), // Icon inside the container
-              ),
-              label: 'Recent Wins',
-            ),
-            BottomNavigationBarItem(
-              icon: Container(
-                width: 59,
-                height: 59,
-                decoration: BoxDecoration(
-                  color: _selectedIndex == 4
-                      ? ThemeStyle.littleBlackColor
-                      : Colors.white, // Background color for the container
-                  borderRadius: BorderRadius.circular(30),
-                  border:
-                      Border.all(width: 2, color: ThemeStyle.littleBlackColor),
-                  boxShadow: [
-                    BoxShadow(
-                      color: ThemeStyle
-                          .littleBlackColor, // Adjust opacity if needed
-                      offset: const Offset(2, 2),
-                      // blurRadius: 4, // Add blur radius for a smoother shadow
-                    ),
-                  ], // Rounded corners
-                ),
-                child: Image.asset('assets/icons/user_account.svg'),
-                 // Icon inside the container
-              ),
-              label: 'More',
-            ),
-          ],
-          currentIndex: _selectedIndex,
-          showUnselectedLabels: false,
-          showSelectedLabels: false,
-          onTap: _onItemTapped,
-        ),
-      ],
+    return SizedBox(
+      width: MediaQuery.of(context).size.width,
+      height: 90,
+      child: BottomNavigationBar(
+        backgroundColor: Colors.white,
+        iconSize: 21,
+        selectedItemColor: const Color.fromARGB(255, 29, 29, 29),
+        unselectedItemColor: const Color.fromARGB(255, 59, 59, 59),
+        currentIndex: _selectedIndex,
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: _selectedIndex == 0
+                ? SvgPicture.asset('assets/icons/home.svg', width: 24, height: 24,)
+                : SvgPicture.asset(
+                    'assets/icons/home.svg', width: 24, height: 24,), // Icon inside the container
+      
+            label: 'Pick`Em',
+          ),
+          BottomNavigationBarItem(
+            icon: _selectedIndex == 1
+                ? SvgPicture.asset('assets/icons/stadia_controller.svg', width: 24, height: 24)
+                : SvgPicture.asset(
+                    'assets/icons/stadia_controller.svg', width: 24, height: 24), // Icon inside the container
+            label: 'More Games',
+          ),
+          BottomNavigationBarItem(
+            icon: SvgPicture.asset(
+                'assets/icons/military.svg', width: 24, height: 24), // Icon inside the container
+            label: 'Entries',
+          ),
+          BottomNavigationBarItem(
+            icon: _selectedIndex == 3
+                ? SvgPicture.asset('assets/icons/win.svg', width: 24, height: 24)
+                : SvgPicture.asset(
+                    'assets/icons/win.svg', width: 24, height: 24), // Icon inside the container
+            label: 'Recent Wins',
+          ),
+          BottomNavigationBarItem(
+            icon: _selectedIndex == 3
+                ? SvgPicture.asset('assets/icons/user_account.svg', width: 24, height: 24)
+                : SvgPicture.asset("assets/icons/user_account.svg", width: 24, height: 24),
+            // Icon inside the container
+            label: 'More',
+          ),
+        ],
+        showUnselectedLabels: true,
+        showSelectedLabels: true,
+        onTap: _onItemTapped,
+      ),
     );
   }
 }

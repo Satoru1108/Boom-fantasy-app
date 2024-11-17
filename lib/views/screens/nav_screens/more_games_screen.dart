@@ -1,6 +1,7 @@
 import 'package:first_app/style/style.dart';
 import 'package:first_app/views/screens/squadride_screen/squadride_screen.dart';
 import 'package:first_app/views/screens/nav_screens/widget/banner_widget.dart';
+import 'package:first_app/views/widgets/bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -74,6 +75,8 @@ class _MoreGamesScreenState extends State<MoreGamesScreen> {
               )
             ],
           ),
-        ));
+        ),
+        bottomNavigationBar: BottomNavBar(currentIndex: 1),
+        );
   }
 }

@@ -1,8 +1,9 @@
 import 'package:first_app/provider/squadPlayer_provider.dart';
 import 'package:first_app/style/style.dart';
+import 'package:first_app/utils/app_routes.dart';
+import 'package:first_app/utils/app_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class ReviewEntryScreen extends ConsumerStatefulWidget {
   const ReviewEntryScreen({super.key});
@@ -13,10 +14,94 @@ class ReviewEntryScreen extends ConsumerStatefulWidget {
 
 class _ReviewEntryScreenState extends ConsumerState<ReviewEntryScreen> {
   final List entryList = [1, 5, 10, 20, "OTHER"];
+  int selectedEntry = -1;
+  void gotoSquadRide () {
+    Navigator.pushNamed(context, AppRoutes.squadride);
+  }
+  void _showModal(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(
+          backgroundColor: Colors.grey[800],
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(24.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Text(
+                  'Insufficient Funds',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 16),
+                const Text(
+                  'You don\'t have enough funds to play. Either change your entry amount or deposit additional funds to play.',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.white70,
+                    fontSize: 14,
+                  ),
+                ),
+                const SizedBox(height: 24),
+                Row(
+                  children: [
+                    Expanded(
+                      child: TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        style: TextButton.styleFrom(
+                          padding: const EdgeInsets.symmetric(vertical: 12),
+                          backgroundColor: Colors.grey[600],
+                        ),
+                        child: const Text(
+                          'CANCEL',
+                          style: TextStyle(
+                            color: Colors.white70,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 16),
+                    Expanded(
+                      child: ElevatedButton(
+                        onPressed: () {},
+                        style: ElevatedButton.styleFrom(
+                          padding: const EdgeInsets.symmetric(vertical: 12),
+                          backgroundColor: Colors.blue,
+                        ),
+                        child: const Text(
+                          'DEPOSIT FUNDS',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final squadPlayerProvider = ref.read(squadplayerProvider.notifier);
     final squadPlayerList = ref.watch(squadplayerProvider);
+
     return Stack(children: [
       Container(
         width: MediaQuery.of(context).size.width,
@@ -28,27 +113,37 @@ class _ReviewEntryScreenState extends ConsumerState<ReviewEntryScreen> {
               height: 50,
             ),
             Container(
-              width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(color: ThemeStyle.secondDarkColor),
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.cancel,
-                          color: Colors.white,
-                      )),
-                     
-
-                    Text(
-                      "Review Entry",
-                      style: TextStyle(fontSize: 25, color: Colors.white),
+              height: 56, // Standard height similar to AppBar
+              color: Colors.grey[700],
+              padding: const EdgeInsets.symmetric(horizontal: 4),
+              child: Stack(
+                children: [
+                  // Close button
+                  Positioned(
+                    left: 4,
+                    top: 0,
+                    bottom: 0,
+                    child: IconButton(
+                      
+                      icon: const Icon(
+                        Icons.close,
+                        color: Colors.white,
+                        size: 24,
+                        weight: 25,
+                      ),
+                      onPressed: () {
+                        gotoSquadRide();
+                      },
                     ),
-                  ],
-                ),
+                  ),
+                  // Centered title
+                  Center(
+                    child: Text(
+                      'Review Entry',
+                      style: AppStyles.textStyle_25_500w
+                    ),
+                  ),
+                ],
               ),
             ),
             SizedBox(
@@ -85,6 +180,7 @@ class _ReviewEntryScreenState extends ConsumerState<ReviewEntryScreen> {
                                     top: -20,
                                     child: IconButton(
                                         onPressed: () {
+                                          gotoSquadRide();
                                           squadPlayerProvider.removePlayer(
                                               squadPlayerList.values
                                                   .toList()[0]
@@ -124,16 +220,14 @@ class _ReviewEntryScreenState extends ConsumerState<ReviewEntryScreen> {
                       padding: const EdgeInsets.only(right: 5.0, left: 5),
                       child: Text(
                         "ENTRY AMOUNT",
-                        style: TextStyle(
-                            fontSize: 18, color: Colors.grey.shade300),
+                        style: AppStyles.textStyle_16_500w,
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(right: 5.0, left: 5.0),
                       child: Text(
                         "(\$100 MAX)",
-                        style: TextStyle(
-                            color: Colors.grey.shade400, fontSize: 14),
+                        style: AppStyles.textStyle_16_500w,
                       ),
                     ),
                     Icon(
@@ -147,7 +241,7 @@ class _ReviewEntryScreenState extends ConsumerState<ReviewEntryScreen> {
                   ),
                   Text(
                     "\$--",
-                    style: TextStyle(fontSize: 35, color: Colors.white),
+                    style: AppStyles.textStyle_35_500w,
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 15.0, bottom: 15),
@@ -155,27 +249,33 @@ class _ReviewEntryScreenState extends ConsumerState<ReviewEntryScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: List.generate(entryList.length, (index) {
                         return ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            setState(() {
+                              selectedEntry = index;
+                            });
+                          },
                           style: ElevatedButton.styleFrom(
                               padding: EdgeInsets.all(5),
-                              backgroundColor: Colors.grey.shade600,
+                              backgroundColor: selectedEntry == index ? AppStyles.hoverColor : Colors.grey.shade600,
                               foregroundColor: Colors.white,
                               shape: RoundedRectangleBorder(
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(20)))),
                           child: Text(
                             "\$${entryList[index]}",
-                            style: TextStyle(color: Colors.white),
+                            style: TextStyle(
+                              color: Colors.white,
+                              decoration: TextDecoration.none,
+                            ),
                           ),
                         );
                       }),
                     ),
                   ),
-                  
                   Center(
                     child: Text(
                       "PAYOUTS:",
-                      style: GoogleFonts.getFont("Lato", fontSize: 17, color: Colors.white),
+                      style: AppStyles.textStyle_16_500w,
                     ),
                   ),
                   SizedBox(
@@ -192,23 +292,19 @@ class _ReviewEntryScreenState extends ConsumerState<ReviewEntryScreen> {
                             children: [
                               Text(
                                 "192-280 rec yds",
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 17, decoration: TextDecoration.none,),
-
-                                  
+                                style: AppStyles.textStyle_16_500w,
                               ),
                               Text(
                                 "2x",
                                 style: TextStyle(
-                                    color: Colors.lightBlueAccent,
-                                    fontSize: 17),
+                                  color: Colors.lightBlueAccent,
+                                  fontSize: 17,
+                                  decoration: TextDecoration.none,
+                                ),
                               ),
                               Text(
-                                "\$--",
-                                style: TextStyle(
-                                    color:
-                                        const Color.fromARGB(255, 25, 241, 79),
-                                    fontSize: 17),
+                                selectedEntry >= 0 ? "\$${entryList[selectedEntry] * 2}" : "\$--",
+                                style: AppStyles.textStyle_16_500g,
                               ),
                             ],
                           ),
@@ -220,24 +316,20 @@ class _ReviewEntryScreenState extends ConsumerState<ReviewEntryScreen> {
                             children: [
                               Text(
                                 "281-311 rec yds",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.bold),
+                                style: AppStyles.textStyle_16_500w,
                               ),
                               Text(
                                 "5x",
                                 style: TextStyle(
-                                    color: Colors.lightBlueAccent,
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.bold),
+                                  color: Colors.lightBlueAccent,
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.bold,
+                                  decoration: TextDecoration.none,
+                                ),
                               ),
                               Text(
-                                "\$--",
-                                style: TextStyle(
-                                    color:
-                                        const Color.fromARGB(255, 25, 241, 79),
-                                    fontSize: 17),
+                                selectedEntry >= 0 ? "\$${entryList[selectedEntry] * 5}" : "\$--",
+                                style: AppStyles.textStyle_16_500g,
                               ),
                             ],
                           ),
@@ -249,21 +341,19 @@ class _ReviewEntryScreenState extends ConsumerState<ReviewEntryScreen> {
                             children: [
                               Text(
                                 "192-280 rec yds",
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 17),
+                                style: AppStyles.textStyle_16_500w,
                               ),
                               Text(
-                                "2x",
+                                "20x",
                                 style: TextStyle(
-                                    color: Colors.lightBlueAccent,
-                                    fontSize: 17),
+                                  color: Colors.lightBlueAccent,
+                                  fontSize: 17,
+                                  decoration: TextDecoration.none,
+                                ),
                               ),
                               Text(
-                                "\$--",
-                                style: TextStyle(
-                                    color:
-                                        const Color.fromARGB(255, 25, 241, 79),
-                                    fontSize: 17),
+                                selectedEntry >= 0 ? "\$${entryList[selectedEntry] * 20}" : "\$--",
+                                style: AppStyles.textStyle_16_500g,
                               ),
                             ],
                           ),
@@ -273,10 +363,7 @@ class _ReviewEntryScreenState extends ConsumerState<ReviewEntryScreen> {
                         ),
                         ElevatedButton(
                           onPressed: () {
-                            Navigator.push(context,
-                                MaterialPageRoute(builder: (context) {
-                              return ReviewEntryScreen();
-                            }));
+                            _showModal(context);
                           },
                           style: ElevatedButton.styleFrom(
                             minimumSize: Size(double.infinity, 30),
@@ -290,7 +377,6 @@ class _ReviewEntryScreenState extends ConsumerState<ReviewEntryScreen> {
                             ),
                             elevation: 5, // Shadow effect
                           ),
-                          
                           child: Text(
                             'ENTER AMOUNT',
                             style: TextStyle(fontSize: 18), // Text size

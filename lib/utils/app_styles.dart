@@ -5,8 +5,58 @@ class AppStyles {
   ///Color style
   static Color mainColor = const Color(0xFF3FEA9C);
   static Color littleBlackColor = const Color(0xff181818);
-
+  static Color hoverColor = const Color.fromARGB(255, 94, 196, 243);
   ///Text style
+  ///
+  static TextStyle textStyle_35_500w = const TextStyle(
+    fontFamily: 'Clash Grotesk',
+    fontSize: 35,
+    fontWeight: FontWeight.w600,
+    color: Colors.white,
+    decoration: TextDecoration.none
+  );
+  static TextStyle textStyle_25_500w = const TextStyle(
+    fontFamily: 'Clash Grotesk',
+    fontSize: 25,
+    fontWeight: FontWeight.w600,
+    color: Colors.white,
+    decoration: TextDecoration.none
+  );
+  static TextStyle textStyle_20_500w = const TextStyle(
+    fontFamily: 'Clash Grotesk',
+    fontSize: 20,
+    fontWeight: FontWeight.w600,
+    color: Colors.white,
+    decoration: TextDecoration.none
+  );
+  static TextStyle textStyle_16_500w = const TextStyle(
+    fontFamily: 'Clash Grotesk',
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+    color: Colors.white,
+    decoration: TextDecoration.none
+  );
+  static TextStyle textStyle_12_500w = const TextStyle(
+    fontFamily: 'Clash Grotesk',
+    fontSize: 12,
+    fontWeight: FontWeight.w600,
+    color: Colors.white,
+    decoration: TextDecoration.none
+  );
+  static TextStyle textStyle_16_500b = const TextStyle(
+    fontFamily: 'Clash Grotesk',
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+    color: Colors.blue,
+    decoration: TextDecoration.none
+  );
+  static TextStyle textStyle_16_500g = const TextStyle(
+    fontFamily: 'Clash Grotesk',
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+    color: Colors.green,
+    decoration: TextDecoration.none
+  );
   static TextStyle textStyle_12_600 = const TextStyle(
     fontFamily: 'Clash Grotesk',
     fontSize: 12,

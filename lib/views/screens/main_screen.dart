@@ -1,7 +1,4 @@
 import 'package:first_app/views/screens/nav_screens/more_games_screen.dart';
-import 'package:first_app/views/screens/nav_screens/entries_screen.dart';
-import 'package:first_app/views/screens/nav_screens/recentwin_screen.dart';
-import 'package:first_app/views/screens/nav_screens/more_screen.dart';
 import 'package:first_app/views/widgets/bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +11,7 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  int _pageIndex = 0;
+  final int _pageIndex = 0;
   final List<Widget> _pages = [
     // HomeScreen(),
     MoreGamesScreen(),
