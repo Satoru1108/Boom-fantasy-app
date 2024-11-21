@@ -1,20 +1,28 @@
 import 'package:first_app/style/style.dart';
-import 'package:first_app/views/screens/nav_screens/squadride_screen/squadride_screen.dart';
+import 'package:first_app/views/screens/squadride_screen/squadride_screen.dart';
 import 'package:first_app/views/screens/nav_screens/widget/banner_widget.dart';
+import 'package:first_app/views/widgets/bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class MoreGamesScreen extends StatefulWidget {
-  MoreGamesScreen({super.key});
+  const MoreGamesScreen({super.key});
 
   @override
   State<MoreGamesScreen> createState() => _MoreGamesScreenState();
 }
 
 class _MoreGamesScreenState extends State<MoreGamesScreen> {
+
+  late bool _isHovered = false;
+  
+  // @override
+  // void initState () {
+  //   super.initState();
+  //   _isHovered = false;
+  // }
   @override
   Widget build(BuildContext context) {
-    bool _isHovered = false;
     return Scaffold(
         appBar: AppBar(
           backgroundColor: ThemeStyle.darkColor,
@@ -48,7 +56,6 @@ class _MoreGamesScreenState extends State<MoreGamesScreen> {
                     Navigator.push(context, MaterialPageRoute(builder: (context) {
                       return SquadrideScreen();
                     }));
-                    print('Image button tapped!');
                   },
                   child: Container(
                     width: _isHovered ? MediaQuery.of(context).size.width : MediaQuery.of(context).size.width - 30,
@@ -68,6 +75,8 @@ class _MoreGamesScreenState extends State<MoreGamesScreen> {
               )
             ],
           ),
-        ));
+        ),
+        bottomNavigationBar: BottomNavBar(currentIndex: 1),
+        );
   }
 }
